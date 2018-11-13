@@ -93,6 +93,7 @@ class Turma(models.Model):
     codigo = models.IntegerField('codigo')
     disciplina = models.ForeignKey(Disciplina, verbose_name='Disciplina', on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, verbose_name='Professor', on_delete=models.CASCADE)
+    qnt_discentes = models.IntegerField('Quantidade de Discentes')
 
     taxa_aprovacao = models.DecimalField('Taxa de Aprovação', decimal_places=2, max_digits=5)
     media_turma = models.DecimalField('Média da Turma', decimal_places=2, max_digits=5)
