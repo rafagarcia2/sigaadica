@@ -1,0 +1,42 @@
+ROTAS DA API:
+
+- /cursos
+    GET:
+        /                   -> retorna todos os cursos cadastrados
+        /departamento/id    -> todas os cursos do departamento
+        /buscar?nome=       -> retorno o resultado da busca por nome
+        /{id}               -> deve retornar um curso especifico
+
+- /departamentos
+    GET:
+        /                   -> retorna todos os departamentos cadastrados
+        /{id}               -> retorna um departamento especifico
+        /buscar?nome=       -> retorno o resultado da busca por nome
+
+
+- /disciplina
+    GET:
+        /                   -> retorna todas as disciplinas cadastrados
+        /{id}               -> retorna uma disciplina especifico
+        /buscar?nome=       -> retorna o resultado da busca por nome ou código
+        /departamento/id    -> retorna as todas disciplinas de um departamento
+        /curso/id           -> retorna as todas disciplinas de um curso
+
+
+- /turmas
+    GET:
+        /                   -> retorna todas as turmas cadastrados
+        /{id}               -> retorna uma turma especifico
+        /buscar?nome=       -> retorno o resultado da busca por nome
+        /disciplina/id      -> retorna todas as turmas vinculadas aquela disciplina
+        /professor/id       -> retorna todas as turmas vinculadas aquele professor
+
+        FILTROS:
+            ?periodo=       -> só as naquele período
+
+- /professores
+    GET:
+        /                   -> retorna todos os departamentos cadastrados
+        /{id}               -> retorna um departamento especifico
+        /buscar?nome=       -> retorno o resultado da busca por nome
+        /disciplina/id      -> todos os professores que já ofereceram aquela disciplina
