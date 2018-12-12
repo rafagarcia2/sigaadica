@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.shortcuts import get_object_or_404
 
 from .serializers import DepartamentoSerializer, CursoSerializer
 from .models import Departamento, Curso
@@ -10,7 +11,7 @@ from .models import Departamento, Curso
 
 class DepartamentoViewSet(viewsets.ModelViewSet):
     """
-    API endpoint que permite visualizar e editar Departamentos.
+    Visualiza e edita Departamentos.
     """
     queryset = Departamento.objects.all().order_by('-nome')
     serializer_class = DepartamentoSerializer
@@ -22,29 +23,27 @@ class DepartamentoViewSet(viewsets.ModelViewSet):
 @api_view(['GET'])
 def curso(request):
     """
-    View responsável por exibir todos os cursos
+    Exibe todos os cursos
     """
     cursos_serializer = CursoSerializer(Curso.objects.all(), many=True)
+
     return Response(cursos_serializer.data)
 
 
 @api_view(['GET'])
 def curso_id(request, id):
     """
-    View responsável por devolver um curso específico pelo seu id
+    Devolve um curso específico
     """
-    try:
-        curso = Curso.objects.get(id=id)
-        curso_serialzer = CursoSerializer(curso)
+    curso = get_object_or_404(Curso, pk=id)
+    curso_serializer = CursoSerializer(curso)
 
-        return Response(curso_serialzer.data)
-    except ObjectDoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    return Response(curso_serializer.data)
 
 
 @api_view(['GET'])
 def curso_por_departamento(request, id):
     """
-    View responsável por pegar todos os cursos de um determinado departamento
+    Recupera todos os cursos de um determinado departamento
     """
     pass

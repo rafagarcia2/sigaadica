@@ -8,3 +8,8 @@ A platoforma web visa tornar acessível informações sobre os cursos e discipli
 ## Tecnologia
 A platorma é desenvolvida usando a linguagem de programação Python com o framework Django.
  
+## Rodando
+
+` Pipenv shell ` 
+
+` Pipenv install `
