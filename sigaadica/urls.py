@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 from rest_framework import routers
-from home.views import DepartamentoViewSet
+from home.views import DepartamentoViewSet, curso_id, disciplinas, disciplina_id, pesquisa_disciplina
 
 router = routers.DefaultRouter()
 router.register(r'departamentos', DepartamentoViewSet)
@@ -25,5 +25,9 @@ router.register(r'departamentos', DepartamentoViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('cursos/<int:id>', curso_id),
+    path('disciplina', disciplinas),
+    path('disciplina/<int:id>', disciplina_id),
+    path('disciplina/buscar', pesquisa_disciplina),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

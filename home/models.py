@@ -51,7 +51,7 @@ class Curso(models.Model):
 
 
 class Disciplina(models.Model):
-    codigo = models.IntegerField('codigo')
+    id_componente = models.IntegerField('id_componente')
     nome = models.CharField('Nome', max_length=100)
     departamento = models.CharField('Departamento', max_length=100)
 
@@ -64,7 +64,7 @@ class Disciplina(models.Model):
     class Meta:
         verbose_name = 'Disciplina'
         verbose_name_plural = 'Disciplinas'
-        ordering = ('departamento', 'nome', 'codigo',)
+        ordering = ('departamento', 'nome', 'id_componente',)
 
 
 class Avaliacao(models.Model):

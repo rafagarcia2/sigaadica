@@ -1,9 +1,16 @@
 from django.core.management.base import BaseCommand, CommandError
 from import_export import resources
-from home.models import Professor
+from home.models import Professor, Disciplina
 from tablib import Dataset
 from home.models import *
 import os
+
+class DisciplinaResource(resources.ModelResource):
+    class Meta:
+        model = Disciplina
+
+    def get_instance(self, instance_loader, row):
+        return False
 
 class ProfessorResource(resources.ModelResource):
     class Meta:

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Departamento, Curso
+from .models import Departamento, Curso, Disciplina
 
 
 class DepartamentoSerializer(serializers.HyperlinkedModelSerializer):
@@ -12,3 +12,9 @@ class CursoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Curso
         fields = ('pk', 'codigo', 'nome', 'ativo', 'data_criacao')
+
+
+class DisciplinaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Disciplina
+        fields = ('pk', 'codigo', 'nome', 'departamento', 'ativo', 'data_criacao')
