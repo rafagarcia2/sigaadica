@@ -51,9 +51,10 @@ class Curso(models.Model):
 
 
 class Disciplina(models.Model):
-    codigo = models.IntegerField('codigo')
-    nome = models.CharField('Nome', max_length=100)
-    departamento = models.CharField('Departamento', max_length=100)
+    id_componente = models.IntegerField('id_componente')
+    nome = models.CharField('Nome', max_length=200)
+    codigo = models.CharField('codigo', max_length=200)
+    departamento = models.CharField('Departamento', max_length=200)
 
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
@@ -64,7 +65,7 @@ class Disciplina(models.Model):
     class Meta:
         verbose_name = 'Disciplina'
         verbose_name_plural = 'Disciplinas'
-        ordering = ('departamento', 'nome', 'codigo',)
+        ordering = ('departamento', 'nome', 'id_componente',)
 
 
 class Avaliacao(models.Model):
