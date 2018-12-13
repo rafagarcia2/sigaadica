@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 from rest_framework import routers
-from home.views import DepartamentoViewSet, curso_id, disciplinas, disciplina_id, pesquisa_disciplina
+from home.views import DisciplinaViewSet, DepartamentoViewSet, curso_id, disciplinas, disciplina_id, pesquisa_disciplina
 
 router = routers.DefaultRouter()
 router.register(r'departamentos', DepartamentoViewSet)
+router.register(r'disciplinas', DisciplinaViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),

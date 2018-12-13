@@ -14,4 +14,8 @@ A platorma é desenvolvida usando a linguagem de programação Python com o fram
 
 ` Pipenv install `
 
-Para importar os csv utilize ` python manage import_csv `
+` ./manage makemigrations `
+
+` ./manage migrate `
+
+Para importar os csv utilize ` python manage import_csv ` (Talvez leve um tempo)

@@ -17,4 +17,4 @@ class CursoSerializer(serializers.ModelSerializer):
 class DisciplinaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Disciplina
-        fields = ('pk', 'codigo', 'nome', 'departamento', 'ativo', 'data_criacao')
+        fields = ('pk', 'id_componente', 'nome', 'departamento', 'ativo', 'data_criacao')

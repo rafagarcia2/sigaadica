@@ -4,6 +4,7 @@ from django.db.models import Q
 from rest_framework import viewsets, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import filters
 from django.shortcuts import get_object_or_404
 
 from .serializers import DepartamentoSerializer, CursoSerializer, DisciplinaSerializer
@@ -17,7 +18,15 @@ class DepartamentoViewSet(viewsets.ModelViewSet):
     queryset = Departamento.objects.all().order_by('-nome')
     serializer_class = DepartamentoSerializer
 
-
+class DisciplinaViewSet(viewsets.ModelViewSet):
+    """
+    Visualiza e edita disciplinas
+    """
+    serializer_class = DisciplinaSerializer
+    queryset = Disciplina.objects.all()
+    filter_backends = (filters.SearchFilter,)
+    lookup_field = 'id_componente'
+    search_fields = ('nome',)
 
 ### CURSOS ###
 
