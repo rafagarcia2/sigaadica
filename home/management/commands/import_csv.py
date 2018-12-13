@@ -2,7 +2,6 @@ from django.core.management.base import BaseCommand, CommandError
 from import_export import resources
 from home.models import Professor, Disciplina
 from tablib import Dataset
-from home.models import *
 import os
 
 class DisciplinaResource(resources.ModelResource):

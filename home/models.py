@@ -52,8 +52,9 @@ class Curso(models.Model):
 
 class Disciplina(models.Model):
     id_componente = models.IntegerField('id_componente')
-    nome = models.CharField('Nome', max_length=100)
-    departamento = models.CharField('Departamento', max_length=100)
+    nome = models.CharField('Nome', max_length=200)
+    codigo = models.CharField('codigo', max_length=200)
+    departamento = models.CharField('Departamento', max_length=200)
 
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
