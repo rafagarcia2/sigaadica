@@ -25,7 +25,7 @@ SECRET_KEY = '=1y@dniyp&81+d0^4a%tufvrsm9bjzcu94ddz^9sfpv4=akv^w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['42c5e133.ngrok.io', '127.0.0.1']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'import_export',
+    'corsheaders',
     'home',
 ]
 
@@ -132,3 +133,14 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 20
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000',
+    'http://42c5e133.ngrok.io/'
+)
+CORS_ORIGIN_REGEX_WHITELIST = (
+    'localhost:8000',
+    'http://42c5e133.ngrok.io/'
+)
