@@ -17,7 +17,11 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 from rest_framework import routers
-from home.views import  curso_id, disciplinas, disciplina_id, pesquisa_disciplina
+from home.views import professor_id, professores, pesquisar_professor
+from home.views import departamento_id, departamentos, pesquisar_departamento
+from home.views import curso_id, cursos, pesquisar_curso
+from home.views import disciplina_id, disciplinas, pesquisar_disciplina
+from home.views import turma_id, turmas, pesquisar_turma
 from home.views import ProfessorViewSet
 from home.views import DepartamentoViewSet 
 from home.views import CursoViewSet
@@ -34,11 +38,23 @@ router.register(r'turmas', TurmaViewSet)
 router.register(r'avaliacoes', AvaliacaoViewSet)
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    path('', include(router.urls)),
     path('admin/', admin.site.urls),
-    path('cursos/<int:id>', curso_id),
+    path('professor', professores),
+    path('departamento', departamentos),
+    path('curso', cursos) ,
     path('disciplina', disciplinas),
+    path('turma', turmas),
+    path('professor/<int:id>', professor_id),
+    path('departamento/<int:id>',departamento_id),
+    path('curso/<int:id>', curso_id),
     path('disciplina/<int:id>', disciplina_id),
-    path('disciplina/buscar', pesquisa_disciplina),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path('turma/<int:id>', turma_id),
+    path('professor/buscar', pesquisar_professor),
+    path('departamento/buscar', pesquisar_departamento),
+    path('curso/buscar', pesquisar_curso),
+    path('disciplina/buscar', pesquisar_disciplina),
+    path('turma/buscar', pesquisar_turma),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+       
 ]
