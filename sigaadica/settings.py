@@ -138,11 +138,9 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
-    '127.0.0.1:8000',
     'http://42c5e133.ngrok.io/'
 )
 CORS_ORIGIN_REGEX_WHITELIST = (
     'localhost:8000',
-    '127.0.0.1:8000',
     'http://42c5e133.ngrok.io/'
 )

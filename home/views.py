@@ -7,15 +7,10 @@ from rest_framework.response import Response
 from rest_framework import filters
 from django.shortcuts import get_object_or_404
 
-from .serializers import ProfessorSerializer
-from .serializers import DepartamentoSerializer
-from .serializers import CursoSerializer
-from .serializers import DisciplinaSerializer
-from .serializers import TurmaSerializer
-from .serializers import AvaliacaoSerializer
-from .models import Professor, Departamento, Curso, Disciplina, Turma, Avaliacao
+from .serializers import DepartamentoSerializer, CursoSerializer, DisciplinaSerializer
+from .models import Departamento, Curso, Disciplina
 
-'''
+
 class DepartamentoViewSet(viewsets.ModelViewSet):
     """
     Visualiza e edita Departamentos.
@@ -32,48 +27,6 @@ class DisciplinaViewSet(viewsets.ModelViewSet):
     filter_backends = (filters.SearchFilter,)
     lookup_field = 'id_componente'
     search_fields = ('nome',)
-'''
-class ProfessorViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Professor.
-    """
-    serializer_class = ProfessorSerializer
-    queryset = Professor.objects.all() 
-
-class DepartamentoViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Departamento.
-    """
-    serializer_class = DepartamentoSerializer
-    queryset = Departamento.objects.all() 
-
-class CursoViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Curso.
-    """
-    serializer_class = CursoSerializer
-    queryset = Curso.objects.all() 
-    
-class DisciplinaViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Disciplina.
-    """
-    serializer_class = DisciplinaSerializer
-    queryset = Disciplina.objects.all() 
-
-class TurmaViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Turma.
-    """
-    serializer_class = TurmaSerializer
-    queryset = Turma.objects.all() 
-
-class AvaliacaoViewSet(viewsets.ModelViewSet):
-    """
-    Visualiza e edita Avaliacao.
-    """
-    serializer_class = AvaliacaoSerializer
-    queryset = Avaliacao.objects.all()
 
 ### CURSOS ###
 
