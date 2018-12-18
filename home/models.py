@@ -53,10 +53,11 @@ class Curso(models.Model):
 
 class Disciplina(models.Model):
     id_componente = models.IntegerField('id_componente', unique=True)
-    nome = models.CharField('Nome', max_length=200)
+    departamento = models.ForeignKey(Departamento, verbose_name='Departamento', on_delete=models.CASCADE)
     codigo = models.CharField('codigo', max_length=200)
-    departamento = models.CharField('Departamento', max_length=200)
-
+    nome = models.CharField('Nome', max_length=200)
+    
+    
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
 
@@ -70,9 +71,9 @@ class Disciplina(models.Model):
 
 
 class Turma(models.Model):
-    codigo = models.IntegerField('codigo')
-    disciplina = models.ForeignKey(Disciplina, to_field='id_componente', verbose_name='Disciplina', on_delete=models.CASCADE)
     professor = models.ForeignKey(Professor, to_field='codigo', verbose_name='Professor', on_delete=models.CASCADE)
+    disciplina = models.ForeignKey(Disciplina, to_field='id_componente', verbose_name='Disciplina', on_delete=models.CASCADE)
+    codigo = models.IntegerField('codigo')
     anoperiodo = models.CharField('Ano/Periodo', max_length=10)
 
     qnt_discentes = models.IntegerField('Quantidade de Discentes')
