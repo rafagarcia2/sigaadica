@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Professor(models.Model):
-    codigo = models.IntegerField('Código')
+    codigo = models.IntegerField('Código', unique=True)
     nome = models.CharField('Nome', max_length=100)
     vinculo = models.CharField('Vínculo', max_length=100)
     
@@ -52,7 +52,7 @@ class Curso(models.Model):
 
 
 class Disciplina(models.Model):
-    id_componente = models.IntegerField('id_componente')
+    id_componente = models.IntegerField('id_componente', unique=True)
     nome = models.CharField('Nome', max_length=200)
     codigo = models.CharField('codigo', max_length=200)
     departamento = models.CharField('Departamento', max_length=200)
@@ -71,14 +71,17 @@ class Disciplina(models.Model):
 
 class Turma(models.Model):
     codigo = models.IntegerField('codigo')
-    disciplina = models.ForeignKey(Disciplina, verbose_name='Disciplina', on_delete=models.CASCADE)
-    professor = models.ForeignKey(Professor, verbose_name='Professor', on_delete=models.CASCADE)
+    disciplina = models.ForeignKey(Disciplina, to_field='id_componente', verbose_name='Disciplina', on_delete=models.CASCADE)
+    professor = models.ForeignKey(Professor, to_field='codigo', verbose_name='Professor', on_delete=models.CASCADE)
     anoperiodo = models.CharField('Ano/Periodo', max_length=10)
-    
+
     qnt_discentes = models.IntegerField('Quantidade de Discentes')
-    qnt_aprov = models.IntegerField('Quantidade de Aprovados')
+    qnt_aprovados = models.IntegerField('Quantidade de Aprovados')
     qnt_reprovados = models.IntegerField('Quantidade de Reprovados')
+
     qnt_trancamentos = models.IntegerField('Quantidade de Trancamentos')
+    qnt_aprovados_primeira = models.IntegerField('Quantidade de Aprovados na primeira vez que pagou')
+    qnt_reposicao = models.IntegerField('Quantidade de Reposições')
 
     taxa_aprovacao = models.DecimalField('Taxa de Aprovação', decimal_places=2, max_digits=5)
     taxa_reprovacao = models.DecimalField('Taxa de Reprovação', decimal_places=2, max_digits=5)
@@ -86,7 +89,6 @@ class Turma(models.Model):
 
     media_turma = models.DecimalField('Média da Turma', decimal_places=2, max_digits=5)
     media_faltas = models.DecimalField('Média da Faltas', decimal_places=2, max_digits=5)
-    qnt_aprovados_primeira = models.DecimalField('Quantidade de Aprovados na primeira vez que pagou', decimal_places=2, max_digits=5)
 
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
