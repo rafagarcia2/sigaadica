@@ -21,24 +21,21 @@ class ProfessorResource(resources.ModelResource):
         return False
 
 class TurmaResource(resources.ModelResource):
-    # disciplina_id = Field(
-    #     column_name='id_componente',
-    #     attribute='disciplina_id',
-    #     widget=ForeignKeyWidget(Disciplina, 'id_componente')
-    # )
-
     disciplina_id = Field(
-        column_name='id_componente',
+        column_name='disciplina',
         attribute='disciplina',
         widget=ForeignKeyWidget(Disciplina, 'id_componente')
     )
 
     class Meta:
         model = Turma
-
-        # fields = ('disciplina__id_componente',)
-        skip_unchanged = True
-        report_skipped = False
+        fields = (
+            'id_componente', 'codigo', 'anoperiodo',
+            'qnt_discentes', 'qnt_aprovados', 'qnt_reprovados',
+            'qnt_reprovados', 'qnt_trancamentos', 'qnt_aprovados_primeira',
+            'qnt_reposicao', 'taxa_aprovacao', 'taxa_reprovacao', 'evasao',
+            'media_turma', 'media_faltas'
+        )
 
     def get_instance(self, instance_loader, row):
         return False
@@ -55,22 +52,20 @@ class Command(BaseCommand):
         if os.path.exists(path):
             # csvs = os.listdir(path)
             csvs = ['professor.csv', 'disciplina.csv', 'turma.csv']
-            # csvs = ['turma.csv']
+
             for csv_file in csvs:
                 path_file = os.path.join(path, csv_file)
-
-                # if csv_file == 'turma.csv':
-                #     print(open(path_file).read())
 
                 dataset = Dataset()
 
                 dataset.load(open(path_file).read())
-                print(dataset)
+
                 csv_class = globals()[csv_file.split('.')[0].capitalize() + 'Resource']
                 csv_object = csv_class()
                 result = csv_object.import_data(dataset, dry_run=True, raise_errors=True)
 
                 if not result.has_errors():
                     csv_class().import_data(dataset, dry_run=False)
+
         else:
             print("Pasta com os dados não encontrada. Nenhuma ação foi feita")

@@ -70,25 +70,25 @@ class Disciplina(models.Model):
 
 
 class Turma(models.Model):
-    codigo = models.CharField('codigo', max_length=200)
+    codigo = models.IntegerField('codigo', unique=True)
     disciplina = models.ForeignKey(Disciplina, to_field='id_componente', verbose_name='Disciplina', on_delete=models.CASCADE)
-    # professor = models.ForeignKey(Professor, to_field='codigo', verbose_name='Professor', on_delete=models.CASCADE)
+    professor = models.ForeignKey(Professor, to_field='codigo', verbose_name='Professor', on_delete=models.CASCADE)
     anoperiodo = models.CharField('Ano/Periodo', max_length=10)
 
-    # qnt_discentes = models.IntegerField('Quantidade de Discentes')
-    # qnt_aprovados = models.IntegerField('Quantidade de Aprovados')
-    # qnt_reprovados = models.IntegerField('Quantidade de Reprovados')
-    #
-    # qnt_trancamentos = models.IntegerField('Quantidade de Trancamentos')
-    # qnt_aprovados_primeira = models.IntegerField('Quantidade de Aprovados na primeira vez que pagou')
-    # qnt_reposicao = models.IntegerField('Quantidade de Reposições')
-    #
-    # taxa_aprovacao = models.DecimalField('Taxa de Aprovação', decimal_places=2, max_digits=5)
-    # taxa_reprovacao = models.DecimalField('Taxa de Reprovação', decimal_places=2, max_digits=5)
-    # evasao = models.DecimalField('Quantidade de Trancamentos', decimal_places=2, max_digits=5)
-    #
-    # media_turma = models.DecimalField('Média da Turma', decimal_places=2, max_digits=5)
-    # media_faltas = models.DecimalField('Média da Faltas', decimal_places=2, max_digits=5)
+    qnt_discentes = models.IntegerField('Quantidade de Discentes')
+    qnt_aprovados = models.IntegerField('Quantidade de Aprovados')
+    qnt_reprovados = models.IntegerField('Quantidade de Reprovados')
+
+    qnt_trancamentos = models.IntegerField('Quantidade de Trancamentos')
+    qnt_aprovados_primeira = models.IntegerField('Quantidade de Aprovados na primeira vez que pagou')
+    qnt_reposicao = models.IntegerField('Quantidade de Reposições')
+
+    taxa_aprovacao = models.DecimalField('Taxa de Aprovação', decimal_places=2, max_digits=5)
+    taxa_reprovacao = models.DecimalField('Taxa de Reprovação', decimal_places=2, max_digits=5)
+    evasao = models.DecimalField('Quantidade de Trancamentos', decimal_places=2, max_digits=5)
+
+    media_turma = models.DecimalField('Média da Turma', decimal_places=2, max_digits=5)
+    media_faltas = models.DecimalField('Média da Faltas', decimal_places=2, max_digits=5)
 
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
