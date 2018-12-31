@@ -5,7 +5,7 @@ class Professor(models.Model):
     codigo = models.IntegerField('Código', unique=True)
     nome = models.CharField('Nome', max_length=100)
     vinculo = models.CharField('Vínculo', max_length=100)
-    
+
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
 
@@ -21,13 +21,13 @@ class Professor(models.Model):
 class Departamento(models.Model):
     codigo = models.IntegerField('codigo')
     nome = models.CharField('Nome', max_length=100)
-    
+
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = 'Departamento'
         verbose_name_plural = 'Departamentos'
@@ -38,13 +38,13 @@ class Curso(models.Model):
     departamento = models.ForeignKey(Departamento, verbose_name='Departamento', on_delete=models.CASCADE)
     codigo = models.IntegerField('codigo')
     nome = models.CharField('Nome', max_length=100)
-    
+
     ativo = models.BooleanField('Ativo', default=True)
     data_criacao = models.DateTimeField('Criado em', auto_now_add=True)
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = 'Curso'
         verbose_name_plural = 'Cursos'
@@ -62,7 +62,7 @@ class Disciplina(models.Model):
 
     def __str__(self):
         return self.nome
-    
+
     class Meta:
         verbose_name = 'Disciplina'
         verbose_name_plural = 'Disciplinas'
@@ -77,7 +77,7 @@ class Turma(models.Model):
 
     qnt_discentes = models.IntegerField('Quantidade de Discentes')
     qnt_aprovados = models.IntegerField('Quantidade de Aprovados')
-    qnt_reprovados = models.IntegerField('Quantidade de Reprovados')
+    qnt_reprovacao = models.IntegerField('Quantidade de Reprovados')
 
     qnt_trancamentos = models.IntegerField('Quantidade de Trancamentos')
     qnt_aprovados_primeira = models.IntegerField('Quantidade de Aprovados na primeira vez que pagou')
@@ -95,7 +95,7 @@ class Turma(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.codigo, self.disciplina)
-    
+
     class Meta:
         verbose_name = 'Turma'
         verbose_name_plural = 'Turmas'
@@ -117,7 +117,7 @@ class Avaliacao(models.Model):
 
     def __str__(self):
         return '{} - {}'.format(self.codigo, self.turma)
-    
+
     class Meta:
         verbose_name = 'Avaliação'
         verbose_name_plural = 'Avaliações'

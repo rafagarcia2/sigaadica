@@ -27,15 +27,21 @@ class TurmaResource(resources.ModelResource):
         widget=ForeignKeyWidget(Disciplina, 'id_componente')
     )
 
+    professor_id = Field(
+        column_name='professor',
+        attribute='professor',
+        widget=ForeignKeyWidget(Professor, 'codigo')
+    )
+
     class Meta:
         model = Turma
-        fields = (
-            'id_componente', 'codigo', 'anoperiodo',
-            'qnt_discentes', 'qnt_aprovados', 'qnt_reprovados',
-            'qnt_reprovados', 'qnt_trancamentos', 'qnt_aprovados_primeira',
-            'qnt_reposicao', 'taxa_aprovacao', 'taxa_reprovacao', 'evasao',
-            'media_turma', 'media_faltas'
-        )
+        # fields = (
+        #     'id_componente', 'codigo', 'anoperiodo',
+        #     'qnt_discentes', 'qnt_aprovados', 'qnt_reprovados',
+        #     'qnt_reprovacao', 'qnt_trancamentos', 'qnt_aprovados_primeira',
+        #     'qnt_reposicao', 'taxa_aprovacao', 'taxa_reprovacao', 'evasao',
+        #     'media_turma', 'media_faltas'
+        # )
 
     def get_instance(self, instance_loader, row):
         return False
@@ -52,7 +58,7 @@ class Command(BaseCommand):
         if os.path.exists(path):
             # csvs = os.listdir(path)
             csvs = ['professor.csv', 'disciplina.csv', 'turma.csv']
-
+            # csvs = ['turma.csv']
             for csv_file in csvs:
                 path_file = os.path.join(path, csv_file)
 
